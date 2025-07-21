@@ -30,9 +30,19 @@ export default class ProductDetails {
     document.getElementById("name").textContent = this.product.NameWithoutBrand || "";
     document.getElementById("image").src = this.product.Image;
     document.getElementById("image").alt = this.product.NameWithoutBrand || "Product Image";
+    document.getElementById("image").onerror = function() { this.onerror=null; this.src='/images/noun_Tent_2517.svg'; };
     document.getElementById("price").textContent = `$${this.product.ListPrice}`;
     document.getElementById("color").textContent = this.product.Color || "";
     document.getElementById("description").textContent = this.product.Description || "";
+
+    // Discount indicator
+    const discountDiv = document.getElementById("discount-indicator");
+    if (this.product.FinalPrice < this.product.SuggestedRetailPrice) {
+      const percent = Math.round(100 * (1 - this.product.FinalPrice / this.product.SuggestedRetailPrice));
+      discountDiv.innerHTML = `<span class="old-price">$${this.product.SuggestedRetailPrice.toFixed(2)}</span> <span class="discount-badge">-${percent}%</span>`;
+    } else {
+      discountDiv.innerHTML = "";
+    }
   }
 }
 

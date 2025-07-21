@@ -7,11 +7,15 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  // Use the image path directly, removing leading '..' if present
+  const imagePath = item.Image && item.Image.startsWith("..") ? item.Image.replace("..", "") : item.Image;
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${imagePath}"
       alt="${item.Name}"
+      onerror="this.onerror=null;this.src='/images/noun_Tent_2517.svg';"
+      style="min-height:120px;object-fit:contain;background:#f8f8f8;"
     />
   </a>
   <a href="#">

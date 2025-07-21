@@ -191,6 +191,21 @@ button {
   font-size: 1em;
 }
 
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-left: 0.5em;
+}
+.discount-badge {
+  background: #e53935;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 0.1em 0.5em;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+  vertical-align: middle;
+}
 /* End product list card */
 
 .product-detail {
