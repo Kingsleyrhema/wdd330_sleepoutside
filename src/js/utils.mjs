@@ -52,4 +52,11 @@ export async function loadHeaderFooter() {
   const footerElement = document.querySelector("#main-footer");
   if (headerElement) renderWithTemplate(headerTemplate, headerElement);
   if (footerElement) renderWithTemplate(footerTemplate, footerElement);
+
+  const cartItems = getLocalStorage("so-cart") || [];
+  const cartCount = cartItems.length;
+  const cartCountElement = document.querySelector(".cart-count");
+  if (cartCountElement) {
+    cartCountElement.textContent = cartCount;
+  }
 }

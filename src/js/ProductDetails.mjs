@@ -25,6 +25,12 @@ export default class ProductDetails {
     cart.push(this.product);
     setLocalStorage("so-cart", cart);
     alert("Added to cart!");
+    // update cart count
+    const cartCount = cart.length;
+    const cartCountElement = document.querySelector(".cart-count");
+    if (cartCountElement) {
+      cartCountElement.textContent = cartCount;
+    }
   }
 
   renderProductDetails() {
