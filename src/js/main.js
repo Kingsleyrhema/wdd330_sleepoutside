@@ -1,4 +1,7 @@
+import { loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
+
+loadHeaderFooter();
 
 document.addEventListener("DOMContentLoaded", () => {
   const dataSource = new ProductData("tents");
