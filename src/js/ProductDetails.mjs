@@ -4,10 +4,11 @@ import ProductData from "./ProductData.mjs";
 loadHeaderFooter();
 
 export default class ProductDetails {
-  constructor(productId, dataSource) {
+  constructor(productId, dataSource, category) {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+    this.category = category;
   }
 
   async init() {
@@ -33,7 +34,7 @@ export default class ProductDetails {
     document.getElementById("image").src = this.product.Image;
     document.getElementById("image").alt = this.product.NameWithoutBrand || "Product Image";
     document.getElementById("image").onerror = function() { this.onerror=null; this.src='/images/noun_Tent_2517.svg'; };
-    document.getElementById("price").textContent = `$${this.product.ListPrice}`;
+    document.getElementById("price").textContent = `$${this.product.FinalPrice.toFixed(2)}`;
     document.getElementById("color").textContent = this.product.Color || "";
     document.getElementById("description").textContent = this.product.Description || "";
 
@@ -47,11 +48,3 @@ export default class ProductDetails {
     }
   }
 }
-
-// Bootstrap the page if loaded directly
-const productId = getParam("product");
-if (productId) {
-  const dataSource = new ProductData("tents");
-  const product = new ProductDetails(productId, dataSource);
-  product.init();
-} 
