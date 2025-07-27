@@ -54,9 +54,29 @@ export async function loadHeaderFooter() {
   if (footerElement) renderWithTemplate(footerTemplate, footerElement);
 
   const cartItems = getLocalStorage("so-cart") || [];
-  const cartCount = cartItems.length;
+  const cartCount = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
   const cartCountElement = document.querySelector(".cart-count");
   if (cartCountElement) {
     cartCountElement.textContent = cartCount;
   }
+}
+
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `
+    <span>${message}</span>
+    <button class="alert-close" aria-label="Close">&times;</button>
+  `;
+  alert.addEventListener("click", function(e) {
+    if (e.target.classList.contains("alert-close")) {
+      const main = document.querySelector("main");
+      if (main && main.contains(alert)) {
+        main.removeChild(alert);
+      }
+    }
+  });
+  const main = document.querySelector("main");
+  if (main) main.prepend(alert);
+  if (scroll) window.scrollTo(0, 0);
 }

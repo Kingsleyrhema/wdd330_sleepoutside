@@ -22,11 +22,28 @@ export default class ProductDetails {
 
   addProductToCart() {
     let cart = getLocalStorage("so-cart") || [];
-    cart.push(this.product);
+    
+    // Check if item already exists in cart
+    const existingItemIndex = cart.findIndex(item => item.Id === this.product.Id);
+    
+    if (existingItemIndex !== -1) {
+      // Item exists, increment quantity
+      if (!cart[existingItemIndex].quantity) {
+        cart[existingItemIndex].quantity = 1;
+      }
+      cart[existingItemIndex].quantity += 1;
+      alert(`Quantity updated! Now have ${cart[existingItemIndex].quantity} of this item in cart.`);
+    } else {
+      // Item doesn't exist, add it with quantity 1
+      this.product.quantity = 1;
+      cart.push(this.product);
+      alert("Added to cart!");
+    }
+    
     setLocalStorage("so-cart", cart);
-    alert("Added to cart!");
-    // update cart count
-    const cartCount = cart.length;
+    
+    // update cart count (total items including quantities)
+    const cartCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
     const cartCountElement = document.querySelector(".cart-count");
     if (cartCountElement) {
       cartCountElement.textContent = cartCount;

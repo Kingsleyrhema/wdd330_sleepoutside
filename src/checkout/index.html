@@ -1,21 +1,60 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Sleep Outside | Checkout</title>
-
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
-
   <body>
     <header class="divider" id="main-header"></header>
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
+      <section class="checkout-section">
+        <form id="checkout-form">
+          <h2>Checkout</h2>
+          <fieldset>
+            <legend>Customer Information</legend>
+            <div class="form-row">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" required />
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" required />
+            </div>
+            <div class="form-row">
+              <label for="street">Street Address</label>
+              <input type="text" id="street" name="street" required />
+            </div>
+            <div class="form-row">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required />
+              <label for="state">State</label>
+              <input type="text" id="state" name="state" required />
+              <label for="zip">Zip Code</label>
+              <input type="text" id="zip" name="zip" required />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <div class="form-row">
+              <label for="cardNumber">Credit Card Number</label>
+              <input type="text" id="cardNumber" name="cardNumber" required />
+            </div>
+            <div class="form-row">
+              <label for="expiration">Expiration Date</label>
+              <input type="text" id="expiration" name="expiration" required />
+              <label for="code">Security Code</label>
+              <input type="text" id="code" name="code" required />
+            </div>
+          </fieldset>
+          <button type="submit" id="checkout-btn">Checkout</button>
+        </form>
+        <aside class="order-summary">
+          <h3>Order Summary</h3>
+          <p>Subtotal: <span id="subtotal">$0.00</span></p>
+          <p>Tax (6%): <span id="tax">$0.00</span></p>
+          <p>Shipping: <span id="shipping">$0.00</span></p>
+          <p><strong>Total: <span id="order-total">$0.00</span></strong></p>
+        </aside>
       </section>
     </main>
     <footer id="main-footer"></footer>
